@@ -2,18 +2,34 @@
 import editIcon from "./assets/editIcon.svg"
 import trashIcon from "./assets/trashIcon.svg"
 import './App.css'
-import { useState } from "react"
+import axios from "axios"
+import { useEffect, useState } from "react"
 
 function App() {
   const [tasklist, setTasklist] = useState([
-    {id: 1, descricao: "Revisar HTML Semântico"},
-    {id: 2, descricao: "Revisar ReactJS"},
-    {id: 3, descricao: "Revisar ReactJS"},
-    {id: 4, descricao: "Revisar Estudar Native"},
-    {id: 5, descricao: "Revisar Estudar Native"},
-    {id: 6, descricao: "Revisar Estudar Native"},
-    {id: 7, descricao: "Revisar Estudar Native"},
+    
   ])
+  //(Get)
+  const getTaks = async () => {
+    try {
+      const APIReturn = await axios.get("http://localhost:3000/taskpoin")
+      const dataAPI = await APIReturn.data
+      setTasklist(dataAPI) 
+    } catch (error) {
+      
+    }
+  }
+  //(Post)
+  const createTaks = ( ) => {}
+  //(Put)
+  const putTaks = ( ) => {}
+  //(Delete)
+  const deleteTaks = ( ) => {}
+
+  useEffect(()=>{
+    getTaks()
+  }, [])
+
 
   return (
     <>
